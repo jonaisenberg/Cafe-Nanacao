@@ -1,9 +1,8 @@
-const request = require("supertest");
-const server = require("../index");
+const request = require("supertest")
+const server = require("../index")
 
-
+// Requerimiento 1
 describe("GET /cafes", () => {
-    // Requerimiento 1
     test('devuelve un codigo 200', async () => {
         const res = await request(server).get('/cafes')
         expect(res.statusCode).toBe(200)
@@ -18,11 +17,11 @@ describe("GET /cafes", () => {
     })
 })
 
+// Requerimiento 2
 describe('DELETE /cafes/:id', () => {
     const jwt = "token"
     const idDelCafeAEliminar = 5
     const idCafe = 1
-    // Requerimiento 2
     test('código 404 al eliminar un café con id inexitente', async () => {
         const res = await request(server)
         .delete(`/cafes/${idDelCafeAEliminar}`)
@@ -40,8 +39,8 @@ describe('DELETE /cafes/:id', () => {
     })
 })
 
+// Requerimiento 3
 describe('POST /cafes', () => {
-    // Requerimiento 3
     test('agrega un nuevo café y devuelve un código 201', async () => {
         const res = await request(server)
         .post('/cafes')
@@ -50,8 +49,8 @@ describe('POST /cafes', () => {
     })
 })
 
+// Requerimiento 4
 describe('PUT /cafes/:id', () => {
-    // Requerimiento 4
     test("PUT -> codigo 400 al actualizar con ID en los parametros distinto al del payload", async () => {
         const response = await request(server)
             .put("/cafes/4")
